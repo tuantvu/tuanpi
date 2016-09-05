@@ -54,7 +54,7 @@ public class ControlActivity extends AppCompatActivity {
 
     private BluetoothAdapter mBluetoothAdapter = null;
     private String mConnectedDeviceName;
-    private static final String MOMI_MAC_ADDRESS = "B8:27:EB:02:13:4E";
+    private static final String MOMI_MAC_ADDRESS = "XX:XX:XX:XX:XX:XX";
 
     private SmoothBluetooth mSmoothBlueTooth;
 
