@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Momi</string>
+
+    <string name="status_not_found">MOMI is not found</string>
+    <string name="status_not_connected">MOMI is not connected</string>
+    <string name="status_connecting">MOMI is connecting</string>
+    <string name="status_connected">MOMI is connected</string>
+
+    <string name="button_connect">CONNECT</string>
+    <string name="button_disconnect">DISCONNECT</string>
+
+</resources>
