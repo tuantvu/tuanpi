@@ -4,8 +4,9 @@ import java.io.IOException;
 /**
  * Write a description of class BluetoothListener here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Tuan
+ * @version 1.0
+ * @since 10/8/2016
  */
 public class BluetoothListener
 {
@@ -48,7 +49,7 @@ public class BluetoothListener
     /**
      * 
      */
-    public void start()
+    public boolean start()
     {
         try
         {
@@ -61,12 +62,28 @@ public class BluetoothListener
                 .flowControl(FlowControl.NONE);
                 
             serial.open(config);
+            return true;
         }
         catch (IOException e)
         {
             System.err.println("====> SERIAL SETUP FAILED: " + e.getMessage());
-            return;
+            return false;
         }
+    }
+    
+    public void stop()
+    {
+    	if (serial != null){
+	    	try {
+				serial.close();
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+    	}
     }
     
     public static interface Callback{
