@@ -8,5 +8,6 @@
 
     <string name="button_connect">CONNECT</string>
     <string name="button_disconnect">DISCONNECT</string>
+    <string name="options">OPTIONS</string>
 
 </resources>

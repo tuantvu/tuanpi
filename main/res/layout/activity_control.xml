@@ -16,8 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/control_layout"
-            android:visibility="@{controls.isConnected ? View.VISIBLE : View.GONE}">
+            android:id="@+id/control_layout">
 
             <SeekBar
                 android:layout_width="300dp"
@@ -65,65 +64,17 @@
                 android:layout_alignLeft="@+id/seekBar2" />
 
             <TextView
-                tools:text="Sonar: 44.44"
+                tools:text="Sonar: N/A"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@{controls.speed}"
+                android:text="Sonar: N/A"
                 android:id="@+id/textView4"
                 android:layout_above="@+id/textView2"
                 android:layout_alignRight="@+id/seekBar2" />
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/connection_layout"></RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{controls.isConnected ? @string/status_connected : controls.isConnecting ? @string/status_connecting : controls.isFound ? @string/status_not_connected : @string/status_not_found}"
-            tools:text="@string/status_not_found"
-            android:id="@+id/status_text"
-            android:layout_alignParentEnd="false"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="8dp" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{controls.isConnected ? @string/button_disconnect : @string/button_connect }"
-            tools:text="DISCONNECT"
-            android:id="@+id/connection_button"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="8dp"
-            android:onClick="@{controls.onConnectClick}"
-            android:visibility="@{controls.isConnected ? View.VISIBLE : controls.isConnecting ? View.GONE : controls.isFound ? View.VISIBLE : View.GONE }"/>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="@{controls.isScanning ? View.VISIBLE : controls.isConnecting ? View.VISIBLE : View.GONE}">
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBar" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Scanning"
-                android:id="@+id/textView3" />
-        </LinearLayout>
     </RelativeLayout>
 
 </layout>

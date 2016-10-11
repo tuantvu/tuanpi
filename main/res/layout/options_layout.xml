@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="control"
+            type="com.cloudmind.momi.ControlActivity" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="32dp">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Manual"
+                android:id="@+id/radioButton"
+                android:checked="@{control.isManual}"
+                android:onCheckedChanged="@{control.toggleManualMode}"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Automatic"
+                android:id="@+id/radioButton2"
+                android:checked="@{!control.isManual}"
+                android:layout_marginLeft="32dp" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{control.drift}"
+            tools:text="Drift: 0"
+            android:id="@+id/drift_text"
+            android:layout_marginTop="16dp" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/drift"
+            android:max="200"
+            android:progress="100"
+            android:indeterminate="false"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect"
+            android:id="@+id/connect_button"
+            android:layout_marginTop="32dp"
+            android:onClick="@{control.onConnectClick}"/>
+    </LinearLayout>
+</layout>
