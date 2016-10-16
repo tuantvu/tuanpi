@@ -35,31 +35,50 @@ public class RobotController
         //Get the last two data elements
         if (dataArray.length >= 2)
         {
-            String speed = dataArray[dataArray.length - 2];
-            String turn = dataArray[dataArray.length - 1];
-            System.out.println("Split speed: " + speed + ", turn: " + turn);
+            String data1 = dataArray[dataArray.length - 2];
+            String data2 = dataArray[dataArray.length - 1];
+            //System.out.println("Split speed: " + speed + ", turn: " + turn);
             
-            //Make sure speed has an "s" and turn has a "t"
-            if (speed.contains("s") && turn.contains("t"))
+            boolean automaticMode = true;
+            
+            //Data with s & t is speed and turn, else left and right wheel
+            if (data1.contains("s") && data2.contains("t"))
             {
-                speed = speed.replace("s","");
-                turn = turn.replace("t","");
+                data1 = data1.replace("s","");
+                data2 = data2.replace("t","");
+                automaticMode = true;
+            }
+            else if ( data1.contains("l") && data2.contains("r"))
+            {
+                data1 = data1.replace("l","");
+                data2 = data2.replace("r","");
+                automaticMode = false;
+            }
+            
+            try
+            {
+                int data1Value = Integer.parseInt(data1);
+                int data2Value = Integer.parseInt(data2);
                 
-                //Try to parse numbers
-                try
+                if (automaticMode)
                 {
-                    int speedValue = Integer.parseInt(speed);
-                    int turnValue = Integer.parseInt(turn);
-                    
-                    System.out.println("Move motors: " + speedValue + ", " + turnValue);
-                    motors.move(speedValue, turnValue);
+                    System.out.println("Move motors: " + data1Value + ", " + data2Value);
+                    motors.move(data1Value, data2Value);
                 }
-                catch (NumberFormatException e)
+                else
                 {
-                    //Do nothing
-                    System.err.println("NumberFormatEx parsing: " + speed + " or " + turn);
+                    System.out.println("Move wheels: " + data1Value + ", " + data2Value);
+                    motors.moveWheels(data1Value, data2Value);
                 }
             }
+            catch (NumberFormatException e)
+            {
+                //Do nothing
+                System.err.println("NumberFormatEx parsing: " + data1 + " or " + data2);
+            }
+            
+            
+            
         }
     }
 
@@ -71,6 +90,16 @@ public class RobotController
      */
     public void start()
     {
-        bluetooth.start();
+        bluetooth.tryConnecting();
+    }
+    
+    public void hold()
+    {
+        bluetooth.heldConnect();
+    }
+    
+    public void talk()
+    {
+        System.out.println("Hi I can do other stuff");
     }
 }

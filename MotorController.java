@@ -47,6 +47,39 @@ public class MotorController
             brake();
         }
     }
+    
+    public void moveWheels(int leftPct, int rightPct)
+    {
+        //Left wheels
+        int leftSpeed = getMotorSpeed(Math.abs(leftPct));
+        if (leftPct > 0)
+        {
+            left.forward(leftSpeed);
+        }
+        else if (leftPct < 0)
+        {
+            left.backward(leftSpeed);
+        }
+        else
+        {
+            left.brake();
+        }
+        
+        //Right wheels
+        int rightSpeed = getMotorSpeed(Math.abs(rightPct));
+        if (rightPct > 0)
+        {
+            right.forward(rightSpeed);
+        }
+        else if (rightPct < 0)
+        {
+            right.backward(rightSpeed);
+        }
+        else
+        {
+            right.brake();
+        }
+    }
 
     /**
      * Moves the robot forward with speed percentage and direction
